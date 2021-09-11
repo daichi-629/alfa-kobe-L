@@ -1,14 +1,21 @@
 <template>
   <svg width="0" height="0" class="hidden">
-    <symbol xmlns="http://www.w3.org/2000/svg" viewBox="0 0 12.47 24.94" id="arrow" class="arrow_svg">
+    <symbol
+      xmlns="http://www.w3.org/2000/svg"
+      viewBox="0 0 12.47 24.94"
+      id="arrow"
+      class="arrow_svg"
+    >
       <title>arrow</title>
-      <polygon points="0 24.94 0 19.66 7.35 12.47 0 5.92 0 0 12.47 12.47 0 24.94" />
+      <polygon
+        points="0 24.94 0 19.66 7.35 12.47 0 5.92 0 0 12.47 12.47 0 24.94"
+      />
     </symbol>
   </svg>
   <header class="header">
     <div class="container">
       <div class="header__logo">
-        <img src="../assets/images/logo/logo.png" alt="チームN" />
+        <img src="../assets/images/logo/logo.png" alt="チームL" />
       </div>
       <div class="header__name">N・S高生制作サイト</div>
     </div>
@@ -24,13 +31,20 @@
     <!-- タイトルエリア ここまで -->
     <section class="section section--story">
       <div class="container">
-        <h2 class="section-title section-title--keycolor section-title--story">ストーリー</h2>
+        <h2 class="section-title section-title--keycolor section-title--story">
+          ストーリー
+        </h2>
         <div class="story">
-          <p class="text-center">
-            風も無く雲一つ無い静かな夜<br> 眠いにつこうとした少年が居た。<br>その少年の名は○○○<br>
-            何事も無くその1日が終わると思っていた。そんな少年に一本の電話が来た<br> その電話の主は<br>
-            友人からのものだった….
-          </p>
+          <AnimatedText
+            interval="80"
+            :is-start="this.isStartAnimatedText"
+            message="風も無く雲一つ無い静かな夜。 眠いにつこうとした少年が居た。その少年の名は○○○。何事も無くその1日が終わると思っていた。そんな少年に一本の電話が来た。 その電話の主は友人からのものだった…"
+            v-slot:default="slotProps"
+          >
+            <p class="text-center">
+              {{ slotProps.message }}
+            </p>
+          </AnimatedText>
           <!--          <p class="text-center">郊外にある、歴史も古い小学校・・・<br>-->
           <!--            いつの間にか、放課後に家庭科室から奇妙な叫び声が聞こえてくるという噂が流れ始めた。<br>-->
           <!--            調査したが、噂の出どころはわからない。<br>-->
@@ -68,19 +82,26 @@
             <div class="card">
               <h3 class="card__title">遊ぶ日時を決めよう！</h3>
               <p class="card__content">
-                前後の説明、解説をあわせ、想定所要時間は100分〜120分です。途中で中断することもできますが、お時間に余裕があるときにご参加ください。</p>
+                前後の説明、解説をあわせ、想定所要時間は100分〜120分です。途中で中断することもできますが、お時間に余裕があるときにご参加ください。
+              </p>
             </div>
           </div>
           <div class="column">
             <div class="card">
               <h3 class="card__title">紙とペンを用意しよう！</h3>
-              <p class="card__content">メモをとるための紙と筆記用具をお手元にご準備ください。</p>
+              <p class="card__content">
+                メモをとるための紙と筆記用具をお手元にご準備ください。
+              </p>
             </div>
           </div>
           <div class="column">
             <div class="card">
-              <h3 class="card__title">ブラウザのCookieとキャッシュを<br>削除しよう！</h3>
-              <p class="card__content">エラーが起きる原因となる恐れがありますので、必ずCookieとキャッシュを削除してからプレイを開始するようにしてください。</p>
+              <h3 class="card__title">
+                ブラウザのCookieとキャッシュを<br />削除しよう！
+              </h3>
+              <p class="card__content">
+                エラーが起きる原因となる恐れがありますので、必ずCookieとキャッシュを削除してからプレイを開始するようにしてください。
+              </p>
             </div>
           </div>
         </div>
@@ -93,25 +114,33 @@
         <div class="row">
           <div class="column">
             <div class="card">
-              <h3 class="card__title">コミュニケーションツール<br>を用意！</h3>
-              <p class="card__content">例：Zoom、LINE通話など<br>
-                カメラはオフにしたままでも参加は可能です。<br>
-                ただ、離れたところにいる仲間と同じ会場で謎解きをしている気持ちになれるので、カメラをオンにしてみんなでわいわいプレイをすることをお勧めします。</p>
+              <h3 class="card__title">
+                コミュニケーションツール<br />を用意！
+              </h3>
+              <p class="card__content">
+                例：Zoom、LINE通話など<br />
+                カメラはオフにしたままでも参加は可能です。<br />
+                ただ、離れたところにいる仲間と同じ会場で謎解きをしている気持ちになれるので、カメラをオンにしてみんなでわいわいプレイをすることをお勧めします。
+              </p>
             </div>
           </div>
           <div class="column">
             <div class="card">
               <h3 class="card__title">イヤホンを使おう！</h3>
-              <p class="card__content">本ゲームでは、登場人物が会話する動画を見ながら謎解きをします。<br>
-                動画を見るときにイヤホンを使うと、動画の再生中も仲間と会話をしながらプレイができます。<br>
-                ※イヤホンを使用しない場合は、音声をマイクが拾ってしまわないように、動画の再生中は通話ツールのミュート機能をご利用ください。</p>
+              <p class="card__content">
+                本ゲームでは、登場人物が会話する動画を見ながら謎解きをします。<br />
+                動画を見るときにイヤホンを使うと、動画の再生中も仲間と会話をしながらプレイができます。<br />
+                ※イヤホンを使用しない場合は、音声をマイクが拾ってしまわないように、動画の再生中は通話ツールのミュート機能をご利用ください。
+              </p>
             </div>
           </div>
           <div class="column">
             <div class="card">
               <h3 class="card__title">情報共有はしっかりと！</h3>
-              <p class="card__content">遠くにいる仲間と足並みを揃えて遊びましょう。<br>
-                動画で気になったところ、解けた謎の答えや思いついたことはなんでも共有しましょう！</p>
+              <p class="card__content">
+                遠くにいる仲間と足並みを揃えて遊びましょう。<br />
+                動画で気になったところ、解けた謎の答えや思いついたことはなんでも共有しましょう！
+              </p>
             </div>
           </div>
         </div>
@@ -119,7 +148,8 @@
     </section>
     <section class="section">
       <div class="container">
-        <router-link class="btn" to="/main">準備OK？では、ゲームスタート！！！
+        <router-link class="btn" to="/main"
+        >準備OK？では、ゲームスタート！！！
           <svg class="btn__arrow">
             <use xlink:href="#arrow"></use>
           </svg>
@@ -129,9 +159,15 @@
   </main>
   <footer class="footer section bg-color--gray">
     <div class="container">
-      <p class="text-center">授業主催： N・S高<br>協力：株式会社SCRAP<br>企画制作：N・S高生</p>
-      <p class="text-center">「リアル脱出ゲーム」は株式会社SCRAPの登録商標です。</p>
-      <p class="text-center">株式会社SCRAPとN・S高で実施した授業「リアル脱出ゲームの作り方」の一環で<br>生徒が制作したものであり、SCRAPが主催/公認するものではありません。</p>
+      <p class="text-center">
+        授業主催： N・S高<br />協力：株式会社SCRAP<br />企画制作：N・S高生
+      </p>
+      <p class="text-center">
+        「リアル脱出ゲーム」は株式会社SCRAPの登録商標です。
+      </p>
+      <p class="text-center">
+        株式会社SCRAPとN・S高で実施した授業「リアル脱出ゲームの作り方」の一環で<br />生徒が制作したものであり、SCRAPが主催/公認するものではありません。
+      </p>
     </div>
   </footer>
 </template>
@@ -140,9 +176,22 @@
 // @ is an alias to /src
 // import HelloWorld from "@/components/HelloWorld.vue";
 
+import AnimatedText from "../components/AnimatedText";
+
 export default {
   name: "Home",
   components: {
+    AnimatedText
   },
+  data() {
+    return {
+      isStartAnimatedText: false
+    };
+  },
+  mounted() {
+    setInterval(() => {
+      this.isStartAnimatedText = true;
+    }, 5000);
+  }
 };
 </script>

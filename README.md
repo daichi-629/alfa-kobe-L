@@ -1,4 +1,4 @@
-# untitled3
+# real-escape-game-v5
 
 ## Project setup
 ```
@@ -21,4 +21,3 @@ npm run lint
 ```
 
 ### Customize configuration
-See [Configuration Reference](https://cli.vuejs.org/config/).

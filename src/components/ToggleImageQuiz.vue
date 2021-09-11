@@ -1,7 +1,7 @@
 <template>
   <figure class="image__container">
     <ToggleImage
-      @input="imageIndex = $event"
+      v-model="this.imageIndex"
       v-bind:images="this.images"
     ></ToggleImage>
   </figure>
