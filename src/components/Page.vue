@@ -7,8 +7,9 @@
 <!--</template>-->
 
 <script>
-import { h ,Transition} from "vue";
+import { h, Transition } from "vue";
 export default {
+  props: ["modelValue", "isLoop"],
   name: "Page",
   data() {
     return {
@@ -33,8 +34,15 @@ export default {
   },
   methods: {
     nextPage() {
-      this.currentPageIndex = (this.currentPageIndex + 1) % this.pages.length;
-      console.log("np");
+      if (this.isLoop) {
+        this.currentPageIndex = (this.currentPageIndex + 1) % this.pages.length;
+        this.$emit("update:modelValue", this.currentPageIndex);
+      } else {
+        if (this.currentPageIndex < this.pages.length - 1) {
+          this.currentPageIndex = this.currentPageIndex + 1;
+          this.$emit("update:modelValue", this.currentPageIndex);
+        }
+      }
     },
   },
   render() {
