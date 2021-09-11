@@ -6,25 +6,27 @@
     ></ToggleImage>
   </figure>
 
-  <section class="section bg-color--keycolor" v-if="this.isAnswerSeen">
-    <div class="container">
-      <h2 class="section-title">
-        <span class="section-title__stage">STAGE：1</span>キーワードを入力
-      </h2>
-      <AnswerInput
-        v-bind:correct="this.correctAnswers[this.answerName]"
-        v-on:answer-input="
-          this.$parent.answerInput(
-            $event,
-            this.stage,
-            this.answerIndex + 1,
-            this.final
-          )
-        "
-      ></AnswerInput>
-<!--      <a class="link-hint" href="hint1.html" target="hint1">ヒントをみる ></a>-->
-    </div>
-  </section>
+  <transition name="answer-input">
+    <section class="section bg-color--keycolor" v-if="this.isAnswerSeen">
+      <div class="container">
+        <h2 class="section-title">
+          <span class="section-title__stage">STAGE：1</span>キーワードを入力
+        </h2>
+        <AnswerInput
+          v-bind:correct="this.correctAnswers[this.answerName]"
+          v-on:answer-input="
+            this.$parent.answerInput(
+              $event,
+              this.stage,
+              this.answerIndex + 1,
+              this.final
+            )
+          "
+        ></AnswerInput>
+        <!--      <a class="link-hint" href="hint1.html" target="hint1">ヒントをみる ></a>-->
+      </div>
+    </section>
+  </transition>
 </template>
 
 <script>
@@ -37,7 +39,7 @@ export default {
     ToggleImage,
     AnswerInput,
   },
-  props: ["stage", "images", "isAnswerInputs", "final",'correctAnswers'],
+  props: ["stage", "images", "isAnswerInputs", "final", "correctAnswers"],
   data() {
     return {
       imageIndex: 0,
@@ -58,3 +60,12 @@ export default {
   },
 };
 </script>
+
+
+<style>
+.answer-input-enter-active,.answer-input-leave-active{
+  transition: opacity 0.1s ease;
+}
+.answer-input-enter-from,.answer-input-leave-to{
+  opacity: 0;
+}</style>
