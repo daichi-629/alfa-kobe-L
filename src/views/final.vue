@@ -76,6 +76,7 @@ Youtube貼り付けここまで-->
           </div>
         </div>
       </div>
+      <button @click="this.$router.push('/')">トップへ戻る</button>
     </section>
   </main>
   <footer class="footer section bg-color--gray">
@@ -94,7 +95,17 @@ Youtube貼り付けここまで-->
 </template>
 
 <script>
+import { mapState } from "vuex";
+
 export default {
   name: "final",
+  computed: {
+    ...mapState(["final"]),
+  },
+  mounted() {
+    if (!this.final) {
+      this.$router.push("/");
+    }
+  },
 };
 </script>

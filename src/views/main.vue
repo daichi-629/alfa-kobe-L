@@ -33,15 +33,15 @@
     <!-- タイトルエリア ここまで -->
     <div id="stage">
       <!-- STAGE1 ここから -->
-      <div v-if="!next['stage1']" id="sectionStage1" class="stage">
+      <div v-if="!this.next['stage1']" id="sectionStage1" class="stage">
         <!-- STAGE1問題セクション ここから -->
         <section class="section">
           <div class="container">
-<!--            <text-animation message="animation" interval="10">-->
-<!--              <template v-slot:default="slotProps">-->
-<!--                <h1>{{ slotProps.message }}</h1>-->
-<!--              </template>-->
-<!--            </text-animation>-->
+            <!--            <text-animation message="animation" interval="10">-->
+            <!--              <template v-slot:default="slotProps">-->
+            <!--                <h1>{{ slotProps.message }}</h1>-->
+            <!--              </template>-->
+            <!--            </text-animation>-->
 
             <h2 class="section-title section-title--keycolorlight">
               <span class="section-title__stage">STAGE：1</span
@@ -63,7 +63,6 @@
                   require('@/assets/images/遊園地.jpg'),
                 ]"
                 v-bind:is-answer-inputs="[1]"
-                v-bind:correct-answers="this.correctAnswer['stage1']"
               ></ToggleImageQuiz>
 
               <!--  YouTube貼り付け
@@ -93,8 +92,14 @@
               []、()の間違い、''の抜けがあると動きません。
             ------------------------------------------------------------------------------------------------------------>
             <answer-input
-              v-bind:correct="correctAnswer['stage1']['q1']"
-              v-on:answer-input="answerInput($event, 'stage1', 1)"
+              v-bind:correct="this.correctAnswer['stage1']['q1']"
+              v-on:answer-input="
+                store.commit('answerInput', {
+                  event: $event,
+                  stage: 'stage1',
+                  number: 1,
+                })
+              "
             ></answer-input>
 
             <a class="link-hint" href="hint1.html" target="hint1"
@@ -111,8 +116,8 @@
           v-bind:class="{isClear:clear['stage1']}"はclear['stage1']がtrueになったら「isClear」クラスを追加します。
         -------------------------------------------------------------------------------------------------------->
         <section
-          v-if="clear['stage1']"
-          v-bind:class="{ isClear: clear['stage1'] }"
+          v-if="this.clear['stage1']"
+          v-bind:class="{ isClear: this.clear['stage1'] }"
           class="section section--clear bg-color--gray"
         >
           <div class="container">
@@ -145,7 +150,7 @@
         v-if="next['stage1']"はnext['stage1']がtrueになったら表示します。
       ----------------------------------------------------------------------->
       <div
-        v-if="next['stage1'] && !next['stage2']"
+        v-if="this.next['stage1'] && !this.next['stage2']"
         id="sectionStage2"
         class="stage"
       >
@@ -188,8 +193,14 @@
                   <!-- STAGE2-1問題セクション ここまで -->
                   <!-- STAGE2-1解答入力セクション ここから -->
                   <AnswerInput
-                    v-bind:correct="correctAnswer['stage2']['q1']"
-                    v-on:answer-input="answerInput($event, 'stage2', 1)"
+                    v-bind:correct="this.correctAnswer['stage2']['q1']"
+                    v-on:answer-input="
+                      this.$store.commit('answerInput', {
+                        event: $event,
+                        stage: 'stage2',
+                        number: 1,
+                      })
+                    "
                   ></AnswerInput>
                   <a class="link-hint" href="hint2.html" target="hint2"
                     >ヒントをみる ></a
@@ -236,8 +247,8 @@
 
         <!-- STAGE2クリア画面 ここから -->
         <section
-          v-if="clear['stage2']"
-          v-bind:class="{ isClear: clear['stage2'] }"
+          v-if="this.clear['stage2']"
+          v-bind:class="{ isClear: this.clear['stage2'] }"
           class="section section--clear bg-color--gray"
         >
           <div class="container">
@@ -264,7 +275,7 @@
       <!-- STAGE2 ここまで -->
 
       <!-- STAGE3 ここから -->
-      <div v-if="next['stage2']" id="sectionStage3" class="stage">
+      <div v-if="this.next['stage2']" id="sectionStage3" class="stage">
         <!-- STAGE3-1問題セクション ここから -->
         <section class="section">
           <div class="container">
@@ -296,8 +307,15 @@
               4番目の引数 'final' は最終ステージを表します。
             ------------------------------------------------------------------------------------------------------------------>
             <AnswerInput
-              v-bind:correct="correctAnswer['stage3']['q1']"
-              v-on:answer-input="answerInput($event, 'stage3', 1, 'final')"
+              v-bind:correct="this.correctAnswer['stage3']['q1']"
+              v-on:answer-input="
+                this.$store.commit('answerInput', {
+                  event: $event,
+                  stage: 'stage3',
+                  number: 1,
+                  final: 'final',
+                })
+              "
             ></AnswerInput>
             <a class="link-hint" href="hint3.html" target="hint3"
               >ヒントをみる ></a
@@ -371,6 +389,7 @@ import AnswerInput from "@/components/AnswerInput"
 <script>
 import AnswerInput from "@/components/AnswerInput";
 import ToggleImageQuiz from "@/components/ToggleImageQuiz";
+import { mapState } from "vuex";
 
 export default {
   name: "Main",
@@ -378,85 +397,22 @@ export default {
     AnswerInput,
     ToggleImageQuiz,
   },
-
-  data() {
-    /* 初期値を設定します */
-    return {
-      /* 解答
-       *  ex. 問題2-3を追加する場合はstage2の配列に解答を追加します。
-       *    q3: 'おおお',
-       */
-      correctAnswer: {
-        stage1: {
-          q1: "あああ",
-        },
-        stage2: {
-          q1: "いいい",
-          // q2: 'えええ',
-          // q3: 'おおお'
-        },
-        stage3: {
-          q1: "ううう",
-          // q2: 'かかか',
-          // q3: 'ききき',
-        },
-      },
-
-      /* それぞれの問題が正解かどうか
-       *  ex. 問題2-3を追加する場合は配列にfalseを追加します。
-       */
-      answer: {
-        stage1: [false],
-        stage2: [
-          false, // 2-1
-          // false, // 2-2
-          // false, // 2-3
-        ],
-        stage3: [
-          false, // 3-1
-          // false, // 3-2
-          // false, // 3-3
-        ],
-      },
-
-      /* ステージの問題が全て正解かどうか */
-      clear: {
-        stage1: false,
-        stage2: false,
-        stage3: false,
-      },
-
-      /* 次のステージを表示するかどうか
-       *  最終ステージはページを遷移するので設定不要です。
-       */
-      next: {
-        stage1: false,
-        stage2: false,
-      },
-    };
+  computed: {
+    ...mapState(["clear", "correctAnswer", "next", "final"]),
   },
-  methods: {
-    /* 「送信」ボタンをクリックした場合の動作です。 */
-    answerInput(event, stage, number, final) {
-      /* answerをtrueまたはfalseにします。 */
-      this.answer[stage][number - 1] = event;
-      /* STAGEのすべての問題がtrueか調べてclearの値を変更します。*/
-      const result = this.answer[stage].every((element) => {
-        return element;
-      });
-      this.clear[stage] = result;
-      /* 最終ステージの入力を判定します。 */
-      if (this.clear[stage] === true && final === "final") {
+  watch: {
+    final(newParam) {
+      if (newParam) {
         this.$router.push("/final");
       }
     },
-    /* クリア画面「次のステージへ」ボタンをクリックした時の動作を設定します
-     *  clearをfalseにしてクリア画面を非表示にします。
-     *  nextをtrueにして次のステージを表示します。
-     */
+  },
+  data() {
+
+  },
+  methods: {
     nextStage(stage) {
-      this.clear[stage] = false;
-      this.next[stage] = true;
+      this.$store.commit("nextStage", { stage: stage });
     },
   },
 };

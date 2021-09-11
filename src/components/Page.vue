@@ -77,7 +77,7 @@ export default {
 };
 </script>
 
-<style>
+<style scoped>
 .change-page-enter-active,
 .change-page-leave-active {
   transition: opacity 0.1s ease;
