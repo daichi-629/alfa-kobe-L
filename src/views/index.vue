@@ -37,7 +37,7 @@
         <div class="story">
           <AnimatedText
             interval="80"
-            :is-start="this.isStartAnimatedText"
+            :is-start="this.isStartContextText"
             message="風も無く雲一つ無い静かな夜。 眠いにつこうとした少年が居た。その少年の名は○○○。何事も無くその1日が終わると思っていた。そんな少年に一本の電話が来た。 その電話の主は友人からのものだった…"
             v-slot:default="slotProps"
           >
@@ -185,12 +185,12 @@ export default {
   },
   data() {
     return {
-      isStartAnimatedText: false
+      isStartContextText: false
     };
   },
   mounted() {
     setInterval(() => {
-      this.isStartAnimatedText = true;
+      this.isStartContextText = true;
     }, 5000);
   }
 };

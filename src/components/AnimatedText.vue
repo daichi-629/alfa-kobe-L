@@ -11,6 +11,7 @@ export default {
   data() {
     return {
       letterNum: 0,
+      started: false,
     };
   },
   computed: {
@@ -32,6 +33,9 @@ export default {
   },
   methods: {
     start() {
+      if (this.started) {
+        return;
+      }
       const id = setInterval(() => {
         this.letterNum++;
         if (this.letterNum >= this.message.length) {
@@ -39,6 +43,7 @@ export default {
           this.$emit("end-message");
         }
       }, this.interval);
+      this.started = true;
     },
   },
 };
