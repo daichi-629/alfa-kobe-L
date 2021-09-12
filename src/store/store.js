@@ -1,9 +1,10 @@
 import { createStore } from "vuex";
 
-const store = createStore({
-  state: {
+function initialState() {
+  return {
     //現在のステージ
     currentStage: 1,
+    isGameStart: false,
     //stageの情報
     stageData: {
       stage1: {
@@ -32,7 +33,12 @@ const store = createStore({
         ],
       },
     },
-  },
+  };
+}
+const state = initialState();
+
+const store = createStore({
+  state: state,
   mutations: {
     answerInput(state, payload) {
       state.stageData[payload.stage].questionData[
@@ -44,6 +50,12 @@ const store = createStore({
       // state.next[payload.stage] = true;
       console.log(payload);
       state.currentStage++;
+    },
+    gameStart(state) {
+      state.isGameStart = true;
+    },
+    resetState(state) {
+      Object.assign(state, initialState());
     },
   },
   getters: {

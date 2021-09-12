@@ -20,7 +20,7 @@
       <div class="header__name">N・S高生制作サイト</div>
     </div>
   </header>
-  <router-view />
+  <router-view v-if="isRouterShow" />
   <footer class="footer section bg-color--gray">
     <div class="container">
       <p class="text-center">
@@ -35,3 +35,27 @@
     </div>
   </footer>
 </template>
+
+<script>
+import { nextTick } from "vue";
+
+export default {
+  data() {
+    return {
+      isRouterShow: true,
+    };
+  },
+  provide() {
+    return {
+      reload: this.reload,
+    };
+  },
+  methods: {
+    async reload() {
+      this.isRouterShow = false;
+      await nextTick();
+      this.isRouterShow = true;
+    },
+  },
+};
+</script>

@@ -64,7 +64,9 @@
               []、()の間違い、''の抜けがあると動きません。
             ------------------------------------------------------------------------------------------------------------>
               <answer-input
-                v-bind:correct="this.correctAnswer['stage1']['q1']"
+                v-bind:correct="
+                  this.stageData['stage1'].questionData[0].correctAnswer
+                "
                 v-on:answer-input="
                   store.commit('answerInput', {
                     event: $event,
@@ -348,7 +350,7 @@ export default {
     ToggleImageQuiz,
   },
   computed: {
-    ...mapState(["currentStage", "stageData"]),
+    ...mapState(["currentStage", "stageData", "isGameStart"]),
     ...mapGetters(["getIsStageClear", "getIsGameClear"]),
   },
   watch: {
@@ -357,6 +359,14 @@ export default {
         this.$router.push("/final");
       }
     },
+  },
+  mounted() {
+    if (!this.isGameStart) {
+      this.$router.push("/");
+    }
+    if (this.getIsGameClear) {
+      this.$router.push("/final");
+    }
   },
   methods: {
     nextStage(stage) {

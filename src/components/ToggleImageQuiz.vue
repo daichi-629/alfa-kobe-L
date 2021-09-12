@@ -64,7 +64,6 @@ export default {
           pageName: "p" + (index + 1).toString(),
           isAnswerInput: isAnswerInput,
           answerIndex: answerIndex,
-          answerName: isAnswerInput ? "q" + (answerIndex + 1).toString() : "",
         };
       });
     },

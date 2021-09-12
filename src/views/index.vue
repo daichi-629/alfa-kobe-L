@@ -1,67 +1,45 @@
 <template>
-<!--  <svg width="0" height="0" >-->
-<!--    <symbol-->
-<!--      xmlns="http://www.w3.org/2000/svg"-->
-<!--      viewBox="0 0 12.47 24.94"-->
-<!--      id="arrow"-->
-<!--      class="arrow_svg"-->
-<!--    >-->
-<!--      <title>arrow</title>-->
-<!--      <polygon-->
-<!--        points="0 24.94 0 19.66 7.35 12.47 0 5.92 0 0 12.47 12.47 0 24.94"-->
-<!--      />-->
-<!--    </symbol>-->
-<!--  </svg>-->
-
   <main class="main index-page">
     <!-- タイトルエリア ここから -->
-    <h1 class="main-title">
-      <img
-        src="../assets/images/遊園地.jpg"
-        alt="Presented by SCRAP×N・S高リアル脱出ゲーム制作PJ 出口のない遊園地からの脱出"
-      />
-    </h1>
+
     <!-- タイトルエリア ここまで -->
     <section class="section section--story">
       <div class="container">
         <h2 class="section-title section-title--keycolor section-title--story">
           ストーリー
         </h2>
+
         <div class="story">
-          <AnimatedText
-            interval="80"
-            :is-start="this.isStartContextText"
-            message="風も無く雲一つ無い静かな夜。 眠いにつこうとした少年が居た。その少年の名は○○○。何事も無くその1日が終わると思っていた。そんな少年に一本の電話が来た。 その電話の主は友人からのものだった…"
-            v-slot:default="slotProps"
-          >
-            <p class="text-center">
-              {{ slotProps.message }}
-            </p>
-          </AnimatedText>
-          <!--          <p class="text-center">郊外にある、歴史も古い小学校・・・<br>-->
-          <!--            いつの間にか、放課後に家庭科室から奇妙な叫び声が聞こえてくるという噂が流れ始めた。<br>-->
-          <!--            調査したが、噂の出どころはわからない。<br>-->
-          <!--            そんな矢先、某有名預言者ノストラエヌスが、「このままだと家庭科室が原因で、学校が滅びるだろう」と予言。<br>-->
-          <!--            生徒に人気のS先生が一人で調査に入ったが、いつまでも帰ってこない。<br>-->
-          <!--            不思議に思った生徒会長の君は、副会長の伊計島太郎と茨つくはの<br>-->
-          <!--            ２名を連れて家庭科室の前に来たが、ドアが開かない。<br>-->
-          <!--            さらにドアの前に画面とキーボードが。どうやら暗号を入力しろということらしい。</p>-->
-          <!--          <div class="story__note__outer bg-color&#45;&#45;gray">-->
-          <!--            <ul class="story__note">-->
-          <!--              <li>今、これを読んだ生徒会メンバー以外を呼んではいけない</li>-->
-          <!--              <li>30分を超えるとS先生は出てこられない</li>-->
-          <!--            </ul>-->
-          <!--          </div>-->
-          <!--          <p class="text-center">いつの間にか、タイマーが起動した。29:58、29:57・・・急がなきゃ。<br>-->
-          <!--            まずはこの暗号を解かなくては！</p>-->
-        </div>
-      </div>
-    </section>
-    <section class="section bg-color--gray">
-      <div class="container">
-        <h2 class="section-title">ゲーム開始前の準備</h2>
-        <p class="font-eng text-center">Are you ready for game?</p>
-        <!--
+          <Page :is-loop="false">
+            <template v-slot:p1>
+              <h1 class="main-title clickable">
+                <img
+                  src="../assets/images/遊園地.jpg"
+                  alt="Presented by SCRAP×N・S高リアル脱出ゲーム制作PJ 出口のない遊園地からの脱出"
+                />
+              </h1>
+            </template>
+            <template v-slot:p2>
+              <AnimatedText
+                interval="1"
+                :is-start="true"
+                message="風も無く雲一つ無い静かな夜。 眠いにつこうとした少年が居た。その少年の名は○○○。何事も無くその1日が終わると思っていた。そんな少年に一本の電話が来た。 その電話の主は友人からのものだった…"
+                v-slot:default="slotProps"
+                @end-message="isMessageEnd = true"
+                :class="{ clickable: isMessageEnd }"
+              >
+                <p class="text-center">
+                  {{ slotProps.message }}
+                </p>
+              </AnimatedText>
+            </template>
+
+            <template v-slot:p3>
+              <section class="section bg-color--gray clickable">
+                <div class="container">
+                  <h2 class="section-title">ゲーム開始前の準備</h2>
+                  <p class="font-eng text-center">Are you ready for game?</p>
+                  <!--
           class名"row"内のclass名"column"が横並びになります。
           改行する場合は以下のように追加してください。
           <div class="row">
@@ -70,86 +48,119 @@
             </div>
           </div>
         -->
-        <div class="row">
-          <div class="column">
-            <div class="card">
-              <h3 class="card__title">遊ぶ日時を決めよう！</h3>
-              <p class="card__content">
-                前後の説明、解説をあわせ、想定所要時間は100分〜120分です。途中で中断することもできますが、お時間に余裕があるときにご参加ください。
-              </p>
-            </div>
-          </div>
-          <div class="column">
-            <div class="card">
-              <h3 class="card__title">紙とペンを用意しよう！</h3>
-              <p class="card__content">
-                メモをとるための紙と筆記用具をお手元にご準備ください。
-              </p>
-            </div>
-          </div>
-          <div class="column">
-            <div class="card">
-              <h3 class="card__title">
-                ブラウザのCookieとキャッシュを<br />削除しよう！
-              </h3>
-              <p class="card__content">
-                エラーが起きる原因となる恐れがありますので、必ずCookieとキャッシュを削除してからプレイを開始するようにしてください。
-              </p>
-            </div>
-          </div>
+                  <div class="row">
+                    <div class="column">
+                      <div class="card">
+                        <h3 class="card__title">遊ぶ日時を決めよう！</h3>
+                        <p class="card__content">
+                          前後の説明、解説をあわせ、想定所要時間は100分〜120分です。途中で中断することもできますが、お時間に余裕があるときにご参加ください。
+                        </p>
+                      </div>
+                    </div>
+                    <div class="column">
+                      <div class="card">
+                        <h3 class="card__title">紙とペンを用意しよう！</h3>
+                        <p class="card__content">
+                          メモをとるための紙と筆記用具をお手元にご準備ください。
+                        </p>
+                      </div>
+                    </div>
+                    <div class="column">
+                      <div class="card">
+                        <h3 class="card__title">
+                          ブラウザのCookieとキャッシュを<br />削除しよう！
+                        </h3>
+                        <p class="card__content">
+                          エラーが起きる原因となる恐れがありますので、必ずCookieとキャッシュを削除してからプレイを開始するようにしてください。
+                        </p>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </section>
+            </template>
+
+            <template v-slot:p4>
+              <section class="section bg-color--keycolor clickable">
+                <div class="container">
+                  <h2 class="section-title">複数人での遊び方</h2>
+                  <p class="font-eng text-center">
+                    Playing games with multiple players
+                  </p>
+                  <div class="row">
+                    <div class="column">
+                      <div class="card">
+                        <h3 class="card__title">
+                          コミュニケーションツール<br />を用意！
+                        </h3>
+                        <p class="card__content">
+                          例：Zoom、LINE通話など<br />
+                          カメラはオフにしたままでも参加は可能です。<br />
+                          ただ、離れたところにいる仲間と同じ会場で謎解きをしている気持ちになれるので、カメラをオンにしてみんなでわいわいプレイをすることをお勧めします。
+                        </p>
+                      </div>
+                    </div>
+                    <div class="column">
+                      <div class="card">
+                        <h3 class="card__title">イヤホンを使おう！</h3>
+                        <p class="card__content">
+                          本ゲームでは、登場人物が会話する動画を見ながら謎解きをします。<br />
+                          動画を見るときにイヤホンを使うと、動画の再生中も仲間と会話をしながらプレイができます。<br />
+                          ※イヤホンを使用しない場合は、音声をマイクが拾ってしまわないように、動画の再生中は通話ツールのミュート機能をご利用ください。
+                        </p>
+                      </div>
+                    </div>
+                    <div class="column">
+                      <div class="card">
+                        <h3 class="card__title">情報共有はしっかりと！</h3>
+                        <p class="card__content">
+                          遠くにいる仲間と足並みを揃えて遊びましょう。<br />
+                          動画で気になったところ、解けた謎の答えや思いついたことはなんでも共有しましょう！
+                        </p>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </section>
+            </template>
+            <template v-slot:p5>
+              <section class="section">
+                <div class="container">
+                  <router-link
+                    class="btn"
+                    to="/main"
+                    @click="this.$store.commit('gameStart')"
+                    >準備OK？では、ゲームスタート！！！
+                    <svg class="btn__arrow">
+                      <use xlink:href="#arrow"></use>
+                    </svg>
+                  </router-link>
+                </div>
+              </section>
+            </template>
+          </Page>
         </div>
-      </div>
-    </section>
-    <section class="section bg-color--keycolor">
-      <div class="container">
-        <h2 class="section-title">複数人での遊び方</h2>
-        <p class="font-eng text-center">Playing games with multiple players</p>
-        <div class="row">
-          <div class="column">
-            <div class="card">
-              <h3 class="card__title">
-                コミュニケーションツール<br />を用意！
-              </h3>
-              <p class="card__content">
-                例：Zoom、LINE通話など<br />
-                カメラはオフにしたままでも参加は可能です。<br />
-                ただ、離れたところにいる仲間と同じ会場で謎解きをしている気持ちになれるので、カメラをオンにしてみんなでわいわいプレイをすることをお勧めします。
-              </p>
-            </div>
-          </div>
-          <div class="column">
-            <div class="card">
-              <h3 class="card__title">イヤホンを使おう！</h3>
-              <p class="card__content">
-                本ゲームでは、登場人物が会話する動画を見ながら謎解きをします。<br />
-                動画を見るときにイヤホンを使うと、動画の再生中も仲間と会話をしながらプレイができます。<br />
-                ※イヤホンを使用しない場合は、音声をマイクが拾ってしまわないように、動画の再生中は通話ツールのミュート機能をご利用ください。
-              </p>
-            </div>
-          </div>
-          <div class="column">
-            <div class="card">
-              <h3 class="card__title">情報共有はしっかりと！</h3>
-              <p class="card__content">
-                遠くにいる仲間と足並みを揃えて遊びましょう。<br />
-                動画で気になったところ、解けた謎の答えや思いついたことはなんでも共有しましょう！
-              </p>
-            </div>
-          </div>
-        </div>
-      </div>
-    </section>
-    <section class="section">
-      <div class="container">
-        <router-link class="btn" to="/main"
-        >準備OK？では、ゲームスタート！！！
-          <svg class="btn__arrow">
-            <use xlink:href="#arrow"></use>
-          </svg>
-        </router-link>
       </div>
     </section>
   </main>
+
+  <teleport to="body" v-if="isConfirm">
+    <GameEndDialog
+      style="
+        position: absolute;
+        top: 0;
+        right: 0;
+        bottom: 0;
+        left: 0;
+        margin: auto;
+        width: 80%;
+        height: 50%;
+      "
+      v-on:yes="reset"
+      v-on:no="this.$router.push('/main')"
+    >
+    </GameEndDialog>
+  </teleport>
 </template>
 
 <script>
@@ -157,21 +168,41 @@
 // import HelloWorld from "@/components/HelloWorld.vue";
 
 import AnimatedText from "../components/AnimatedText";
+import Page from "@/components/Page";
+import GameEndDialog from "@/components/GameEndDialog.vue";
+import { mapGetters } from "vuex";
 
 export default {
   name: "Home",
   components: {
-    AnimatedText
+    AnimatedText,
+    Page,
+    GameEndDialog,
   },
   data() {
     return {
-      isStartContextText: false
+      isMessageEnd: false,
+      isConfirm: false,
     };
   },
+  inject: ["reload"],
+  computed: {
+    ...mapGetters(["getIsGameClear"]),
+  },
+
   mounted() {
-    setInterval(() => {
-      this.isStartContextText = true;
-    }, 5000);
-  }
+    if (this.$store.state.isGameStart) {
+      this.isConfirm = true;
+    }
+    if (this.getIsGameClear) {
+      this.reset();
+    }
+  },
+  methods: {
+    reset() {
+      this.$store.commit("resetState");
+      this.reload();
+    },
+  },
 };
 </script>
