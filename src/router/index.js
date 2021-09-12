@@ -2,7 +2,6 @@ import { createRouter, createWebHashHistory } from "vue-router";
 import Index from "../views/index";
 import Main from "../views/main";
 import Final from "../views/final";
-import testPage from "../views/testpage";
 import notFound from "../views/404";
 
 const routes = [
@@ -20,11 +19,6 @@ const routes = [
     path: "/final",
     name: "final",
     component: Final,
-  },
-  {
-    path: "/test",
-    name: "test",
-    component: testPage,
   },
   {
     path: "/:pathMatch(.*)*",
