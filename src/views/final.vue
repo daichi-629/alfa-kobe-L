@@ -1,12 +1,4 @@
 <template>
-  <header class="header">
-    <div class="container">
-      <div class="header__logo">
-        <img src="../assets/images/logo/logo.png" alt="チームロゴ" />
-      </div>
-      <div class="header__name">N・S高生制作サイト</div>
-    </div>
-  </header>
   <main class="main final-page">
     <!-- タイトルエリア ここから -->
     <h1 class="main-title">
@@ -33,7 +25,6 @@
         <figure class="image__container">
           <img src="../assets/images/stage.png" alt="" />
         </figure>
-
         <!--  YouTube貼り付け
             <div class="youtube__container">
               <div class="youtube">
@@ -41,7 +32,6 @@
               </div>
             </div>
 Youtube貼り付けここまで-->
-
         <p class="text-center">
           あなたはきっと、このメッセージをずっと忘れることはないだろう・・・。<br />
           これからも家庭科室が封鎖されるようなことがあったら、<br />
@@ -76,25 +66,23 @@ Youtube貼り付けここまで-->
           </div>
         </div>
       </div>
+      <button @click="this.$router.push('/')">トップへ戻る</button>
     </section>
   </main>
-  <footer class="footer section bg-color--gray">
-    <div class="container">
-      <p class="text-center">
-        授業主催： N・S高<br />協力：株式会社SCRAP<br />企画制作：N・S高生
-      </p>
-      <p class="text-center">
-        「リアル脱出ゲーム」は株式会社SCRAPの登録商標です。
-      </p>
-      <p class="text-center">
-        株式会社SCRAPとN・S高で実施した授業「リアル脱出ゲームの作り方」の一環で<br />生徒が制作したものであり、SCRAPが主催/公認するものではありません。
-      </p>
-    </div>
-  </footer>
 </template>
 
 <script>
+import { mapGetters } from "vuex";
+
 export default {
   name: "final",
+  computed: {
+    ...mapGetters(["getIsGameClear"]),
+  },
+  mounted() {
+    if (!this.getIsGameClear) {
+      this.$router.push("/");
+    }
+  },
 };
 </script>
