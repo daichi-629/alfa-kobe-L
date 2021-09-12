@@ -63,7 +63,7 @@ const store = createStore({
         return element;
       });
       state.clear[payload.stage] = result;
-      console.log(payload)
+      // console.log(payload)
       if (payload.final === "final" && result === true) {
         state.final = true;
       }
