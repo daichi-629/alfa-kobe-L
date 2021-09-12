@@ -16,7 +16,7 @@
             >キーワードを入力
           </h2>
           <AnswerInput
-            v-bind:correct="correctAnswer[object.answerName]"
+            v-bind:correct="correctAnswer[object.answerIndex]"
             v-on:answer-input="
               this.$store.commit('answerInput', {
                 event: $event,
@@ -70,7 +70,9 @@ export default {
     },
     ...mapState({
       correctAnswer(state) {
-        return state.correctAnswer[this.stage];
+        return state.stageData[this.stage].questionData.map(
+          (i) => i.correctAnswer
+        );
       },
     }),
   },

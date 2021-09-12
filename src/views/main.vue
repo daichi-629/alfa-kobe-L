@@ -1,18 +1,4 @@
 <template>
-<!--  <svg width="0" height="0" class="hidden">-->
-<!--    <symbol-->
-<!--      xmlns="http://www.w3.org/2000/svg"-->
-<!--      viewBox="0 0 12.47 24.94"-->
-<!--      id="arrow"-->
-<!--      class="arrow_svg"-->
-<!--    >-->
-<!--      <title>arrow</title>-->
-<!--      <polygon-->
-<!--        points="0 24.94 0 19.66 7.35 12.47 0 5.92 0 0 12.47 12.47 0 24.94"-->
-<!--      />-->
-<!--    </symbol>-->
-<!--  </svg>-->
-
   <main class="main main-page">
     <!-- タイトルエリア ここから -->
     <img
@@ -23,57 +9,53 @@
     <!-- タイトルエリア ここまで -->
     <div id="stage">
       <!-- STAGE1 ここから -->
-      <div v-if="!this.next['stage1']" id="sectionStage1" class="stage">
+      <div v-if="this.currentStage === 1" id="sectionStage1" class="stage">
         <!-- STAGE1問題セクション ここから -->
-        <section class="section">
-          <div class="container">
-            <!--            <text-animation message="animation" interval="10">-->
-            <!--              <template v-slot:default="slotProps">-->
-            <!--                <h1>{{ slotProps.message }}</h1>-->
-            <!--              </template>-->
-            <!--            </text-animation>-->
-
-            <h2 class="section-title section-title--keycolorlight">
-              <span class="section-title__stage">STAGE：1</span
-              >さぁゲームを始めよう！
-            </h2>
-            <p class="text-center">
-              ある日友人から電話がかかってくる<br />友人は目が覚めると遊園地にいて、外に出る方法が分からないという。
-              助けを求められて遊園地に設置されている謎を解いて出口を探す！
-            </p>
-            <p class="text-center">
-              困ったときは、ヒントがある。なるべく見ないようにゲームを進めていこう。
-            </p>
-
+        <section v-if="!this.getIsStageClear('stage1')">
+          <section class="section">
             <div class="container">
-              <ToggleImageQuiz
-                stage="stage1"
-                v-bind:images="[
-                  require('@/assets/images/stage.png'),
-                  require('@/assets/images/遊園地.jpg'),
-                ]"
-                v-bind:is-answer-inputs="[1]"
-              ></ToggleImageQuiz>
+              <h2 class="section-title section-title--keycolorlight">
+                <span class="section-title__stage">STAGE：1</span
+                >さぁゲームを始めよう！
+              </h2>
+              <p class="text-center">
+                ある日友人から電話がかかってくる<br />友人は目が覚めると遊園地にいて、外に出る方法が分からないという。
+                助けを求められて遊園地に設置されている謎を解いて出口を探す！
+              </p>
+              <p class="text-center">
+                困ったときは、ヒントがある。なるべく見ないようにゲームを進めていこう。
+              </p>
 
-              <!--  YouTube貼り付け
+              <div class="container">
+                <ToggleImageQuiz
+                  stage="stage1"
+                  v-bind:images="[
+                    require('@/assets/images/stage.png'),
+                    require('@/assets/images/遊園地.jpg'),
+                  ]"
+                  v-bind:is-answer-inputs="[1]"
+                ></ToggleImageQuiz>
+
+                <!--  YouTube貼り付け
                            <div class="youtube__container">
                              <div class="youtube">
                                <iframe width="560" height="315" src="https://www.youtube.com/embed/IRyJe-0Uie0?controls=0" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
                              </div>
                            </div>
              Youtube貼り付けここまで -->
+              </div>
             </div>
-          </div>
-        </section>
-        <!-- STAGE1問題セクション ここまで -->
+          </section>
+          <!-- STAGE1問題セクション ここまで -->
 
-        <!-- STAGE1解答入力セクション ここから -->
-        <section class="section bg-color--keycolor" v-if="false">
-          <div class="container">
-            <h2 class="section-title">
-              <span class="section-title__stage">STAGE：1</span>キーワードを入力
-            </h2>
-            <!------------------------------------------------------------------------------------------------------------
+          <!-- STAGE1解答入力セクション ここから -->
+          <section class="section bg-color--keycolor" v-if="false">
+            <div class="container">
+              <h2 class="section-title">
+                <span class="section-title__stage">STAGE：1</span
+                >キーワードを入力
+              </h2>
+              <!------------------------------------------------------------------------------------------------------------
               解答入力欄のコンポーネントです。入力欄・送信ボタン・エラーメッセージを表示します。
               v-bind:correct="correctAnswer['stage1']['q1']" は正解の解答を指します。
               v-on:answer-input="answerInput($event, 'stage1', 1)" は送信ボタンをクリックした時の動作を決める関数です。
@@ -81,33 +63,29 @@
               1番麺の引数 $event は正解、不正解の判定を受け取る変数です。
               []、()の間違い、''の抜けがあると動きません。
             ------------------------------------------------------------------------------------------------------------>
-            <answer-input
-              v-bind:correct="this.correctAnswer['stage1']['q1']"
-              v-on:answer-input="
-                store.commit('answerInput', {
-                  event: $event,
-                  stage: 'stage1',
-                  number: 1,
-                })
-              "
-            ></answer-input>
+              <answer-input
+                v-bind:correct="this.correctAnswer['stage1']['q1']"
+                v-on:answer-input="
+                  store.commit('answerInput', {
+                    event: $event,
+                    stage: 'stage1',
+                    number: 1,
+                  })
+                "
+              ></answer-input>
 
-            <a class="link-hint" href="hint1.html" target="hint1"
-              >ヒントをみる ></a
-            >
-          </div>
+              <a class="link-hint" href="hint1.html" target="hint1"
+                >ヒントをみる ></a
+              >
+            </div>
+          </section>
+          <!-- STAGE1解答入力セクション ここまで -->
         </section>
-        <!-- STAGE1解答入力セクション ここまで -->
 
         <!-- STAGE1クリア画面 ここから -->
-        <!------------------------------------------------------------------------------------------------------
-          ステージを全問正解するとclear['stage1']がtrueになります。
-          v-if="clear['stage1']"はclear['stage1']がtrueになったら表示します。
-          v-bind:class="{isClear:clear['stage1']}"はclear['stage1']がtrueになったら「isClear」クラスを追加します。
-        -------------------------------------------------------------------------------------------------------->
         <section
-          v-if="this.clear['stage1']"
-          v-bind:class="{ isClear: this.clear['stage1'] }"
+          v-else
+          v-bind:class="{ isClear: this.getIsStageClear('stage1') }"
           class="section section--clear bg-color--gray"
         >
           <div class="container">
@@ -135,16 +113,8 @@
       <!-- STAGE1 ここまで -->
 
       <!-- STAGE2 ここから -->
-      <!---------------------------------------------------------------------
-        クリア画面の「次のステージへ」ボタンをクリックしたら表示します。
-        v-if="next['stage1']"はnext['stage1']がtrueになったら表示します。
-      ----------------------------------------------------------------------->
-      <div
-        v-if="this.next['stage1'] && !this.next['stage2']"
-        id="sectionStage2"
-        class="stage"
-      >
-        <section>
+      <div v-else-if="this.currentStage === 2" id="sectionStage2" class="stage">
+        <section v-if="!this.getIsStageClear('stage2')">
           <div class="section">
             <div class="container">
               <h2 class="section-title section-title--keycolorlight">
@@ -183,7 +153,9 @@
                   <!-- STAGE2-1問題セクション ここまで -->
                   <!-- STAGE2-1解答入力セクション ここから -->
                   <AnswerInput
-                    v-bind:correct="this.correctAnswer['stage2']['q1']"
+                    v-bind:correct="
+                      this.stageData['stage2'].questionData[0].correctAnswer
+                    "
                     v-on:answer-input="
                       this.$store.commit('answerInput', {
                         event: $event,
@@ -237,8 +209,8 @@
 
         <!-- STAGE2クリア画面 ここから -->
         <section
-          v-if="this.clear['stage2']"
-          v-bind:class="{ isClear: this.clear['stage2'] }"
+          v-else
+          v-bind:class="{ isClear: this.getIsStageClear('stage2') }"
           class="section section--clear bg-color--gray"
         >
           <div class="container">
@@ -265,53 +237,54 @@
       <!-- STAGE2 ここまで -->
 
       <!-- STAGE3 ここから -->
-      <div v-if="this.next['stage2']" id="sectionStage3" class="stage">
-        <!-- STAGE3-1問題セクション ここから -->
-        <section class="section">
-          <div class="container">
-            <h2 class="section-title section-title--keycolorlight">
-              <span class="section-title__stage">STAGE：3</span
-              >家庭科室の課題とは
-            </h2>
-            <p class="text-center">
-              黒板から得たメッセージは、「食物の廃棄問題」だった。<br />
-              どうやら、廃棄にかかる費用がかかりすぎて小学校の運営が厳しくなったようだ。。<br />
-              これらを解決するための最後の謎を解いていこう！
-            </p>
-            <figure class="image__container">
-              <img src="../assets/images/stage.png" alt="" />
-            </figure>
-          </div>
-        </section>
-        <!-- STAGE3-1問題セクション ここまで -->
+      <div v-if="this.currentStage === 3" id="sectionStage3" class="stage">
+        <section v-if="!this.getIsStageClear('stage3')">
+          <!-- STAGE3-1問題セクション ここから -->
+          <section class="section">
+            <div class="container">
+              <h2 class="section-title section-title--keycolorlight">
+                <span class="section-title__stage">STAGE：3</span
+                >家庭科室の課題とは
+              </h2>
+              <p class="text-center">
+                黒板から得たメッセージは、「食物の廃棄問題」だった。<br />
+                どうやら、廃棄にかかる費用がかかりすぎて小学校の運営が厳しくなったようだ。。<br />
+                これらを解決するための最後の謎を解いていこう！
+              </p>
+              <figure class="image__container">
+                <img src="../assets/images/stage.png" alt="" />
+              </figure>
+            </div>
+          </section>
+          <!-- STAGE3-1問題セクション ここまで -->
 
-        <!-- STAGE3-1解答入力セクションここから -->
-        <section class="section bg-color--keycolor">
-          <div class="container">
-            <h2 class="section-title">
-              <span class="section-title__stage">STAGE：3</span>キーワードを入力
-            </h2>
-            <!-----------------------------------------------------------------------------------------------------------------
-              解答入力欄のコンポーネントです。
-              v-on:answer-input="answerInput($event, 'stage3', 1, 'final')" は送信ボタンをクリックした時の動作を決める関数です。
-              4番目の引数 'final' は最終ステージを表します。
-            ------------------------------------------------------------------------------------------------------------------>
-            <AnswerInput
-              v-bind:correct="this.correctAnswer['stage3']['q1']"
-              v-on:answer-input="
-                this.$store.commit('answerInput', {
-                  event: $event,
-                  stage: 'stage3',
-                  number: 1,
-                  final: 'final',
-                })
-              "
-            ></AnswerInput>
-            <a class="link-hint" href="hint3.html" target="hint3"
-              >ヒントをみる ></a
-            >
-          </div>
+          <!-- STAGE3-1解答入力セクションここから -->
+          <section class="section bg-color--keycolor">
+            <div class="container">
+              <h2 class="section-title">
+                <span class="section-title__stage">STAGE：3</span
+                >キーワードを入力
+              </h2>
+              <AnswerInput
+                v-bind:correct="
+                  this.stageData['stage3'].questionData[0].correctAnswer
+                "
+                v-on:answer-input="
+                  this.$store.commit('answerInput', {
+                    event: $event,
+                    stage: 'stage3',
+                    number: 1,
+                    final: true,
+                  })
+                "
+              ></AnswerInput>
+              <a class="link-hint" href="hint3.html" target="hint3"
+                >ヒントをみる ></a
+              >
+            </div>
+          </section>
         </section>
+
         <!-- STAGE3-1解答入力セクション ここまで -->
 
         <!-- STAGE3-2問題セクション を追加
@@ -359,7 +332,6 @@
       <!-- STAGE3 ここまで -->
     </div>
   </main>
-
 </template>
 
 import AnswerInput from "@/components/AnswerInput"
@@ -367,7 +339,7 @@ import AnswerInput from "@/components/AnswerInput"
 <script>
 import AnswerInput from "@/components/AnswerInput";
 import ToggleImageQuiz from "@/components/ToggleImageQuiz";
-import { mapState } from "vuex";
+import { mapGetters, mapState } from "vuex";
 
 export default {
   name: "Main",
@@ -376,10 +348,11 @@ export default {
     ToggleImageQuiz,
   },
   computed: {
-    ...mapState(["clear", "correctAnswer", "next", "final"]),
+    ...mapState(["currentStage", "stageData"]),
+    ...mapGetters(["getIsStageClear", "getIsGameClear"]),
   },
   watch: {
-    final(newParam) {
+    getIsGameClear(newParam) {
       if (newParam) {
         this.$router.push("/final");
       }

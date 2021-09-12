@@ -25,7 +25,6 @@
         <figure class="image__container">
           <img src="../assets/images/stage.png" alt="" />
         </figure>
-
         <!--  YouTube貼り付け
             <div class="youtube__container">
               <div class="youtube">
@@ -33,7 +32,6 @@
               </div>
             </div>
 Youtube貼り付けここまで-->
-
         <p class="text-center">
           あなたはきっと、このメッセージをずっと忘れることはないだろう・・・。<br />
           これからも家庭科室が封鎖されるようなことがあったら、<br />
@@ -74,15 +72,15 @@ Youtube貼り付けここまで-->
 </template>
 
 <script>
-import { mapState } from "vuex";
+import { mapGetters } from "vuex";
 
 export default {
   name: "final",
   computed: {
-    ...mapState(["final"]),
+    ...mapGetters(["getIsGameClear"]),
   },
   mounted() {
-    if (!this.final) {
+    if (!this.getIsGameClear) {
       this.$router.push("/");
     }
   },
