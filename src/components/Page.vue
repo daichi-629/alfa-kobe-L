@@ -49,7 +49,7 @@ export default {
     const currentPage = this.pages[this.currentPageIndex].pageName;
     const pageVNodes = this.$slots[currentPage]().map((node) => {
       let classes = [];
-      if (node.props !== null) {
+      if (node.props !== null && node.props["class"] !== undefined) {
         classes = node.props["class"].split(" ");
       } else {
         classes = [];
@@ -61,11 +61,12 @@ export default {
             onClick: () => {
               this.nextPage();
             },
+            ...node.props,
           },
           node.children
         );
       } else {
-        return h(node.type, {}, node.children);
+        return h(node.type, { ...node.props }, node.children);
       }
     });
     return h(

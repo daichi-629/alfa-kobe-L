@@ -66,7 +66,7 @@ Youtube貼り付けここまで-->
           </div>
         </div>
       </div>
-      <button @click="this.$router.push('/')">トップへ戻る</button>
+      <button @click="gotoTop">トップへ戻る</button>
     </section>
   </main>
 </template>
@@ -83,6 +83,12 @@ export default {
     if (!this.getIsGameClear) {
       this.$router.push("/");
     }
+  },
+  methods: {
+    gotoTop() {
+      this.$store.commit("resetState");
+      this.$router.push("/");
+    },
   },
 };
 </script>

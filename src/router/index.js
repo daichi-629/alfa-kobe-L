@@ -3,6 +3,7 @@ import Index from "../views/index";
 import Main from "../views/main";
 import Final from "../views/final";
 import testPage from "../views/testpage";
+import notFound from "../views/404";
 
 const routes = [
   {
@@ -24,6 +25,11 @@ const routes = [
     path: "/test",
     name: "test",
     component: testPage,
+  },
+  {
+    path: "/:pathMatch(.*)*",
+    name: "not found",
+    component: notFound,
   },
 ];
 
