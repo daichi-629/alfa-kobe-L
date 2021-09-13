@@ -1,4 +1,3 @@
 module.exports = {
-  publicPath:
-    process.env.NODE_ENV === "production" ? "/alfa-kobe-L/" : "/",
+  publicPath: process.env.NODE_ENV === "production" ? "/alfa-kobe-L/" : "/",
 };
