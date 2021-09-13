@@ -14,36 +14,66 @@
         <section v-if="!this.getIsStageClear('stage1')">
           <section class="section">
             <div class="container">
-              <h2 class="section-title section-title--keycolorlight">
-                <span class="section-title__stage">STAGE：1</span
-                >さぁゲームを始めよう！
-              </h2>
-              <p class="text-center">
-                ある日友人から電話がかかってくる<br />友人は目が覚めると遊園地にいて、外に出る方法が分からないという。
-                助けを求められて遊園地に設置されている謎を解いて出口を探す！
-              </p>
-              <p class="text-center">
-                困ったときは、ヒントがある。なるべく見ないようにゲームを進めていこう。
-              </p>
+              <Page is-loop="false">
+                <template v-slot:p1>
+                  <h2 class="section-title section-title--keycolorlight">
+                    <span class="section-title__stage">STAGE：1</span
+                    >さぁゲームを始めよう！
+                  </h2>
+                  <AnimatedText
+                    v-slot:default="{ message }"
+                    :interval="this.textSpeed"
+                    message="ある日友人から電話がかかってくる。友人は目が覚めると遊園地にいて、外に出る方法が分からないという。助けを求められて遊園地に設置されている謎を解いて出口を探す！"
+                    is-start="true"
+                    v-on:end-message="stage1.isTextAnimateEnd = true"
+                    :class="{ clickable: stage1.isTextAnimateEnd }"
+                  >
+                    <p class="text-center">{{ message }}</p>
+                  </AnimatedText>
+                </template>
+                <template v-slot:p2>
+                  <div class="bg-color--keycolor" style="padding: 10px">
+                    <div class="text-center">
+                      <img
+                        src="../assets/images/プロN.png"
+                        alt=""
+                        style="height: 80%; width: 80%; padding-left: 7%"
+                      />
+                    </div>
+                    <AnswerInput
+                      v-bind:correct="
+                        this.stageData['stage1'].questionData[0].correctAnswer
+                      "
+                      v-on:answer-input="
+                        this.$store.commit('answerInput', {
+                          event: $event,
+                          stage: 'stage1',
+                          number: 1,
+                        })
+                      "
+                    ></AnswerInput>
+                  </div>
+                </template>
+              </Page>
 
-              <div class="container">
-                <ToggleImageQuiz
-                  stage="stage1"
-                  v-bind:images="[
-                    require('@/assets/images/stage.png'),
-                    require('@/assets/images/遊園地.jpg'),
-                  ]"
-                  v-bind:is-answer-inputs="[1]"
-                ></ToggleImageQuiz>
+              <!--              <div class="container">-->
+              <!--                <ToggleImageQuiz-->
+              <!--                  stage="stage1"-->
+              <!--                  v-bind:images="[-->
+              <!--                    require('@/assets/images/stage.png'),-->
+              <!--                    require('@/assets/images/遊園地.jpg'),-->
+              <!--                  ]"-->
+              <!--                  v-bind:is-answer-inputs="[1]"-->
+              <!--                ></ToggleImageQuiz>-->
 
-                <!--  YouTube貼り付け
+              <!--  YouTube貼り付け
                            <div class="youtube__container">
                              <div class="youtube">
                                <iframe width="560" height="315" src="https://www.youtube.com/embed/IRyJe-0Uie0?controls=0" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
                              </div>
                            </div>
              Youtube貼り付けここまで -->
-              </div>
+              <!--              </div>-->
             </div>
           </section>
           <!-- STAGE1問題セクション ここまで -->
@@ -126,7 +156,7 @@
               <AnimatedText
                 v-slot:default="{ message }"
                 message="先程の謎から『サーカス』という答えを導き出した。ここから出るための手がかりがあるかもしれない、とサーカス会場に行ってみることに。思った通り、サーカス会場に行ってみると1枚の紙が落ちており、そこには次の謎が、"
-                interval="50"
+                :interval="this.textSpeed"
                 :is-start="true"
               >
                 <p class="text-center">{{ message }}</p>
@@ -153,7 +183,10 @@
                 <div class="column">
                   <!-- STAGE2-1問題セクション ここから -->
                   <figure class="image__container">
-                    <img src="../assets/images/stage.png" alt="" />
+                    <img
+                      src="../assets/images/circus-4721247_1920.jpg"
+                      alt=""
+                    />
                   </figure>
                   <!-- STAGE2-1問題セクション ここまで -->
                   <!-- STAGE2-1解答入力セクション ここから -->
@@ -267,25 +300,27 @@
           <section class="section bg-color--keycolor">
             <div class="container">
               <h2 class="section-title">
-                <span class="section-title__stage">STAGE：3</span
-                >キーワードを入力
+                <span class="section-title__stage">STAGE：3</span>地図を選択
               </h2>
-              <AnswerInput
-                v-bind:correct="
-                  this.stageData['stage3'].questionData[0].correctAnswer
-                "
-                v-on:answer-input="
-                  this.$store.commit('answerInput', {
-                    event: $event,
-                    stage: 'stage3',
-                    number: 1,
-                    final: true,
-                  })
-                "
-              ></AnswerInput>
-              <a class="link-hint" href="hint3.html" target="hint3"
-                >ヒントをみる ></a
-              >
+              <div style="display: flex; justify-content: center">
+                <mapquiz> </mapquiz>
+              </div>
+              <!--              <AnswerInput-->
+              <!--                v-bind:correct="-->
+              <!--                  this.stageData['stage3'].questionData[0].correctAnswer-->
+              <!--                "-->
+              <!--                v-on:answer-input="-->
+              <!--                  this.$store.commit('answerInput', {-->
+              <!--                    event: $event,-->
+              <!--                    stage: 'stage3',-->
+              <!--                    number: 1,-->
+              <!--                    final: true,-->
+              <!--                  })-->
+              <!--                "-->
+              <!--              ></AnswerInput>-->
+              <!--              <a class="link-hint" href="hint3.html" target="hint3"-->
+              <!--                >ヒントをみる ></a-->
+              <!--              >-->
             </div>
           </section>
         </section>
@@ -343,19 +378,30 @@ import AnswerInput from "@/components/AnswerInput"
 
 <script>
 import AnswerInput from "@/components/AnswerInput";
-import ToggleImageQuiz from "@/components/ToggleImageQuiz";
+// import ToggleImageQuiz from "@/components/ToggleImageQuiz";
 import { mapGetters, mapState } from "vuex";
 import AnimatedText from "../components/AnimatedText";
+import Page from "../components/Page";
+import mapquiz from "./mapquiz";
 
 export default {
   name: "Main",
+  data() {
+    return {
+      stage1: {
+        isTextAnimateEnd: false,
+      },
+    };
+  },
   components: {
+    Page,
     AnswerInput,
-    ToggleImageQuiz,
+    // ToggleImageQuiz,
     AnimatedText,
+    mapquiz,
   },
   computed: {
-    ...mapState(["currentStage", "stageData", "isGameStart"]),
+    ...mapState(["currentStage", "stageData", "isGameStart", "textSpeed"]),
     ...mapGetters(["getIsStageClear", "getIsGameClear"]),
   },
   watch: {

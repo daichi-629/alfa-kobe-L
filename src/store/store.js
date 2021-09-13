@@ -33,6 +33,7 @@ function initialState() {
         ],
       },
     },
+    textSpeed: 1,
   };
 }
 const state = initialState();
@@ -41,6 +42,7 @@ const store = createStore({
   state: state,
   mutations: {
     answerInput(state, payload) {
+      //payload={event:boolean,stage:String,number:Number}
       state.stageData[payload.stage].questionData[
         payload.number - 1
       ].isCorrect = payload.event;

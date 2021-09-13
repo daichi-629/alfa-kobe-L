@@ -3,6 +3,7 @@ import Index from "../views/index";
 import Main from "../views/main";
 import Final from "../views/final";
 import notFound from "../views/404";
+import testpage from "../views/mapquiz";
 
 const routes = [
   {
@@ -20,6 +21,10 @@ const routes = [
     name: "final",
     component: Final,
   },
+  process.env.NODE_ENV !== "production"
+    ? { path: "/test", component: testpage }
+    : {},
+
   {
     path: "/:pathMatch(.*)*",
     name: "not found",

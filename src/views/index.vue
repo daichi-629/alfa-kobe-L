@@ -21,7 +21,7 @@
             </template>
             <template v-slot:p2>
               <AnimatedText
-                interval="50"
+                :interval="this.$store.state.textSpeed"
                 :is-start="true"
                 message="風も無く雲一つ無い静かな夜。 眠いにつこうとした少年が居た。その少年の名は○○○。何事も無くその1日が終わると思っていた。そんな少年に一本の電話が来た。 その電話の主は友人からのものだった…"
                 v-slot:default="slotProps"
