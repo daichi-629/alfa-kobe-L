@@ -1,11 +1,11 @@
 <template>
   <main class="main main-page">
     <!-- タイトルエリア ここから -->
-    <img
-      class="main-title"
-      src="../assets/images/遊園地.jpg"
-      alt="出口のない遊園地からの脱出！"
-    />
+    <!--    <img-->
+    <!--      class="main-title"-->
+    <!--      src="../assets/images/遊園地.jpg"-->
+    <!--      alt="出口のない遊園地からの脱出！"-->
+    <!--    />-->
     <!-- タイトルエリア ここまで -->
     <div id="stage">
       <!-- STAGE1 ここから -->
@@ -123,11 +123,14 @@
                 <span class="section-title__stage">STAGE：2</span
                 >黒板に書かれている謎を解け！
               </h2>
-              <p class="text-center">
-                家庭科室に入ることができた！<br />
-                すぐに目に入ったのは黒板にある４つの謎。<br />
-                これらを解くことで、きっと次のステップに繋がるはずだ！
-              </p>
+              <AnimatedText
+                v-slot:default="{ message }"
+                message="先程の謎から『サーカス』という答えを導き出した。ここから出るための手がかりがあるかもしれない、とサーカス会場に行ってみることに。思った通り、サーカス会場に行ってみると1枚の紙が落ちており、そこには次の謎が、"
+                interval="50"
+                :is-start="true"
+              >
+                <p class="text-center">{{ message }}</p>
+              </AnimatedText>
             </div>
           </div>
           <div class="stage-column__container section bg-color--keycolor">
@@ -342,12 +345,14 @@ import AnswerInput from "@/components/AnswerInput"
 import AnswerInput from "@/components/AnswerInput";
 import ToggleImageQuiz from "@/components/ToggleImageQuiz";
 import { mapGetters, mapState } from "vuex";
+import AnimatedText from "../components/AnimatedText";
 
 export default {
   name: "Main",
   components: {
     AnswerInput,
     ToggleImageQuiz,
+    AnimatedText,
   },
   computed: {
     ...mapState(["currentStage", "stageData", "isGameStart"]),

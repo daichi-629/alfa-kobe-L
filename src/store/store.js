@@ -10,7 +10,7 @@ function initialState() {
       stage1: {
         questionData: [
           {
-            correctAnswer: "あああ",
+            correctAnswer: ["さーかす", "サーカス"],
             isCorrect: false,
           },
         ],
@@ -18,7 +18,7 @@ function initialState() {
       stage2: {
         questionData: [
           {
-            correctAnswer: "いいい",
+            correctAnswer: ["いいい"],
             isCorrect: false,
           },
         ],
@@ -27,7 +27,7 @@ function initialState() {
       stage3: {
         questionData: [
           {
-            correctAnswer: "ううう",
+            correctAnswer: ["ううう"],
             isCorrect: false,
           },
         ],
