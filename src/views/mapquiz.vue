@@ -17,9 +17,7 @@
         'background-color': 'rgba(200, 200, 200, 10)',
         opacity: 0.5,
       }"
-      :component-styles="{
-        position: 'absolute',
-      }"
+      :component-styles="{}"
       :paddings="{ top: '14.7%', bottom: '0%', left: '10.5%', right: '7.5%' }"
       :item-sizes="{ row: ['57%'], column: ['35.5%', '34.7%'] }"
       @item-click="itemClick($event)"
