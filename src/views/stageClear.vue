@@ -10,7 +10,7 @@
           v-on:click="
             this.$store.commit('nextStage', { stage: 'stage' + this.stage })
           "
-          class="clear-message__btn btn"
+          class="btn clear-message__btn"
         >
           次のステージへ
           <svg class="btn__arrow">

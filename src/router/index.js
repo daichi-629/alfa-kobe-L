@@ -3,7 +3,7 @@ import Index from "../views/index";
 import Main from "../views/main";
 import Final from "../views/final";
 import notFound from "../views/404";
-import testpage from "../views/mapquiz";
+import testpage from "../views/stages/stage3MapQuiz";
 
 const routes = [
   {

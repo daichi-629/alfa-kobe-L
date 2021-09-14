@@ -3,12 +3,10 @@
     <section class="section">
       <div class="container">
         <h2 class="section-title section-title--keycolorlight">
-          <span class="section-title__stage">STAGE：3</span>家庭科室の課題とは
+          <span class="section-title__stage">STAGE：4</span>メリーゴーランド
         </h2>
         <p class="text-center">
-          黒板から得たメッセージは、「食物の廃棄問題」だった。<br />
-          どうやら、廃棄にかかる費用がかかりすぎて小学校の運営が厳しくなったようだ。。<br />
-          これらを解決するための最後の謎を解いていこう！
+          メリーゴーランドに到着した。脱出の手がかりが得られるかもしれない
         </p>
         <figure class="image__container">
           <img src="../../assets/images/stage.png" alt="" />
@@ -20,7 +18,7 @@
           this.$store.commit('answerInput', {
             event: $event,
             stage: 'stage4',
-            number: 1,
+            number: 1
           })
         "
       ></AnswerInput>

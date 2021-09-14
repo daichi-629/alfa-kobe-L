@@ -145,7 +145,10 @@
   </main>
 
   <teleport to="body" v-if="isConfirm">
-    <GameEndDialog
+    <yes-no-dialog
+      message="ゲームをやめますか？"
+      yes-message="はい"
+      no-message="いいえ"
       style="
         position: absolute;
         top: 0;
@@ -155,21 +158,23 @@
         margin: auto;
         width: 80%;
         height: 50%;
+        background-color: rgba(150, 150, 150, 150);
       "
+      title-style="text-align: center"
+      button-style="margin:10px"
       v-on:yes="reset"
       v-on:no="this.$router.push('/main')"
     >
-    </GameEndDialog>
+    </yes-no-dialog>
   </teleport>
 </template>
 
 <script>
 // @ is an alias to /src
-// import HelloWorld from "@/components/HelloWorld.vue";
 
 import AnimatedText from "../components/AnimatedText";
 import Page from "@/components/Page";
-import GameEndDialog from "@/components/GameEndDialog.vue";
+import yesNoDialog from "../components/yesNoDialog";
 import { mapGetters } from "vuex";
 
 export default {
@@ -177,7 +182,7 @@ export default {
   components: {
     AnimatedText,
     Page,
-    GameEndDialog,
+    yesNoDialog,
   },
   data() {
     return {
