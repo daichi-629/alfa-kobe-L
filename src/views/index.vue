@@ -12,6 +12,20 @@
         <div class="story">
           <Page :is-loop="false">
             <template v-slot:p1>
+              <AnimatedText
+                :interval="this.$store.state.textSpeed"
+                :is-start="true"
+                message="画像やテキストをクリックすると進めることができます。"
+                v-slot:default="slotProps"
+                @end-message="isFirstMessageEnd = true"
+              >
+                <p class="text-center">
+                  {{ slotProps.message }}
+                </p>
+              </AnimatedText>
+              <button :class="{ clickable: isFirstMessageEnd}">ゲームを開始する</button>
+            </template>
+            <template v-slot:p2>
               <h1 class="main-title clickable">
                 <img
                   src="../assets/images/遊園地.jpg"
@@ -19,7 +33,7 @@
                 />
               </h1>
             </template>
-            <template v-slot:p2>
+            <template v-slot:p3>
               <AnimatedText
                 :interval="this.$store.state.textSpeed"
                 :is-start="true"
@@ -34,7 +48,7 @@
               </AnimatedText>
             </template>
 
-            <template v-slot:p3>
+            <template v-slot:p4>
               <section class="section bg-color--gray clickable">
                 <div class="container">
                   <h2 class="section-title">ゲーム開始前の準備</h2>
@@ -80,7 +94,7 @@
               </section>
             </template>
 
-            <template v-slot:p4>
+            <template v-slot:p5>
               <section class="section bg-color--keycolor clickable">
                 <div class="container">
                   <h2 class="section-title">複数人での遊び方</h2>
@@ -123,7 +137,7 @@
                 </div>
               </section>
             </template>
-            <template v-slot:p5>
+            <template v-slot:p6>
               <section class="section">
                 <div class="container">
                   <router-link
@@ -186,6 +200,7 @@ export default {
   },
   data() {
     return {
+      isFirstMessageEnd: false,
       isMessageEnd: false,
       isConfirm: false,
     };

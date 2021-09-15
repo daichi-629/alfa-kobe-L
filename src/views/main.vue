@@ -8,7 +8,12 @@
         ></stage1-question>
         <!-- STAGE1問題セクション ここまで -->
         <!-- STAGE1クリア画面 ここから -->
-        <stage-clear message="サーカスという答えが得られた。サーカスに行ってみよう。" :stage="1" v-else> </stage-clear>
+        <stage-clear
+          message="サーカスという答えが得られた。サーカスに行ってみよう。"
+          :stage="1"
+          v-else
+        >
+        </stage-clear>
         <!-- STAGE1クリア画面 ここまで -->
       </div>
       <!-- STAGE1 ここまで -->
