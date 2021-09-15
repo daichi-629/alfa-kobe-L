@@ -35,7 +35,7 @@ function initialState() {
       stage4: {
         questionData: [
           {
-            correctAnswer: ["えええ"],
+            correctAnswer: ["脱出"],
             isCorrect: false,
           },
         ],
