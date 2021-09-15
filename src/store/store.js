@@ -10,7 +10,7 @@ function initialState() {
       stage1: {
         questionData: [
           {
-            correctAnswer: "あああ",
+            correctAnswer: ["さーかす", "サーカス"],
             isCorrect: false,
           },
         ],
@@ -18,7 +18,7 @@ function initialState() {
       stage2: {
         questionData: [
           {
-            correctAnswer: "いいい",
+            correctAnswer: ["ジェットコースター", "じぇっとこーすたー"],
             isCorrect: false,
           },
         ],
@@ -27,12 +27,21 @@ function initialState() {
       stage3: {
         questionData: [
           {
-            correctAnswer: "ううう",
+            correctAnswer: ["ううう"],
+            isCorrect: false,
+          },
+        ],
+      },
+      stage4: {
+        questionData: [
+          {
+            correctAnswer: ["脱出"],
             isCorrect: false,
           },
         ],
       },
     },
+    textSpeed: 1,
   };
 }
 const state = initialState();
@@ -41,6 +50,8 @@ const store = createStore({
   state: state,
   mutations: {
     answerInput(state, payload) {
+      //payload={event:boolean,stage:String,number:Number}
+      //event:正誤 stage:stage名 number:クイズ番号
       state.stageData[payload.stage].questionData[
         payload.number - 1
       ].isCorrect = payload.event;

@@ -51,9 +51,7 @@ export default {
       imageIndex: 0,
     };
   },
-  mounted() {
-    console.log(this.correctAnswer[this.stage]);
-  },
+  mounted() {},
   computed: {
     questionObjects() {
       return this.images.map((image, index) => {

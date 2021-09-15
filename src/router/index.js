@@ -2,8 +2,8 @@ import { createRouter, createWebHashHistory } from "vue-router";
 import Index from "../views/index";
 import Main from "../views/main";
 import Final from "../views/final";
-import testPage from "../views/testpage";
 import notFound from "../views/404";
+import testpage from "../views/stages/stage3MapQuiz";
 
 const routes = [
   {
@@ -21,11 +21,10 @@ const routes = [
     name: "final",
     component: Final,
   },
-  {
-    path: "/test",
-    name: "test",
-    component: testPage,
-  },
+  process.env.NODE_ENV !== "production"
+    ? { path: "/test", component: testpage }
+    : {},
+
   {
     path: "/:pathMatch(.*)*",
     name: "not found",

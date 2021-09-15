@@ -28,8 +28,7 @@ export default {
   },
   methods: {
     judgement(answer) {
-      console.log(answer)
-      if (answer === this.correct) {
+      if (this.correct.includes(answer)) {
         // 入力値が解答と一致する場合
         this.message = this.okMessage;
         this.$emit("answerInput", true);
