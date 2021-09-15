@@ -25,8 +25,8 @@
               <transition appear name="appear-quiz">
                 <div class="text-center">
                   <img
-                    src="../../assets/images/プロN.png"
-                    alt=""
+                    src="../../assets/images/stage1Question.png"
+                    alt="クイズ"
                     style="height: 70%; width: 70%; padding-left: 7%"
                   />
                 </div>
