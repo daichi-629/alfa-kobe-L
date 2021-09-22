@@ -9,7 +9,7 @@ export default {
   methods: {
     gotoIndex() {
       this.$store.commit("resetState");
-      this.$router.push("/");
+      this.$router.push({ name: "index" });
     },
   },
 };
