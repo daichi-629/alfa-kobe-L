@@ -41,7 +41,7 @@ function initialState() {
         ],
       },
     },
-    textSpeed: 1,
+    textSpeed: 50,
   };
 }
 const state = initialState();

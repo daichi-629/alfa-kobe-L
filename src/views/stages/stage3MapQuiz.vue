@@ -61,7 +61,7 @@
     <AnimatedText
       message="そこには何もないようだ"
       is-start="true"
-      :interval="this.textSpeed * 100"
+      :interval="100"
       @end-message="inCorrectMessageEnd"
       v-slot="{ message }"
     >

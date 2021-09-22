@@ -8,7 +8,7 @@
       />
     </div>
     <p v-if="message === ngMessage" class="err-message">{{ message }}</p>
-    <button v-on:click="judgement(inputAnswer)">送信</button>
+    <button class="btn" v-on:click="judgement(inputAnswer)">送信</button>
     <p v-if="message === okMessage" class="err-message">{{ message }}</p>
   </div>
 </template>

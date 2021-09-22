@@ -1,13 +1,5 @@
 <template>
   <main class="main final-page">
-    <!-- タイトルエリア ここから -->
-    <h1 class="main-title">
-      <img
-        src="../assets/images/main-image.png"
-        alt="封鎖された家庭科室からの脱出"
-      />
-    </h1>
-    <!-- タイトルエリア ここまで -->
     <section class="section">
       <div class="container">
         <div class="box bg-color--subcolor">
@@ -67,7 +59,7 @@ Youtube貼り付けここまで-->
           </div>
         </div>
       </div>
-      <button @click="gotoTop">トップへ戻る</button>
+      <button class="btn" @click="gotoTop">トップへ戻る</button>
     </section>
   </main>
 </template>

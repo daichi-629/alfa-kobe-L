@@ -23,7 +23,7 @@
                   {{ slotProps.message }}
                 </p>
               </AnimatedText>
-              <button :class="{ clickable: isFirstMessageEnd}">ゲームを開始する</button>
+              <button class="btn" :class="{ clickable: isFirstMessageEnd}">ゲームを開始する</button>
             </template>
             <template v-slot:p2>
               <h1 class="main-title clickable">

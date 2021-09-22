@@ -35,7 +35,7 @@
                     <figure class="image__container">
                       <!--                      問題画像?-->
                       <img
-                        src="../../assets/images/circus-4721247_1920.jpg"
+                        src="../../assets/images/stage2/stage2Question.png"
                         alt=""
                       />
                     </figure>
