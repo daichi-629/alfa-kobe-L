@@ -1,5 +1,9 @@
 # real-escape-game-v5
 
+##現在バグによりメインページが表示されません
+####https://daichi-629.github.io/alfa-kobe-L/#/index
+##にメインページURLを変更しています
+
 ## Project setup
 ```
 npm install

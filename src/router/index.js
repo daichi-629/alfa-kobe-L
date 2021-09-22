@@ -1,4 +1,5 @@
 import { createRouter, createWebHashHistory } from "vue-router";
+
 import Index from "../views/index";
 import Main from "../views/main";
 import Final from "../views/final";
@@ -8,6 +9,10 @@ import testpage from "../views/stages/stage3MapQuiz";
 const routes = [
   {
     path: "/",
+    redirect: "/index",
+  },
+  {
+    path: "/index",
     name: "index",
     component: Index,
   },
@@ -33,7 +38,7 @@ const routes = [
 ];
 
 const router = createRouter({
-  history: createWebHashHistory(),
+  history: createWebHashHistory("/alfa-kobe-L/"),
   routes,
 });
 

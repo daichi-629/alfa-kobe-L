@@ -146,11 +146,9 @@ export default {
   methods: {
     onMouseOver(row, column) {
       this.isHoverData[row][column] = true;
-      console.log("over");
     },
     onMouseOut(row, column) {
       this.isHoverData[row][column] = false;
-      console.log("out");
     },
     createIsHoverData(row, column) {
       const v = new Array(row)

@@ -12,19 +12,12 @@
         <div class="story">
           <Page :is-loop="false">
             <template v-slot:p1>
-              <AnimatedText
-                :interval="this.$store.state.textSpeed"
-                :is-start="true"
-                message="画像やテキストをクリックすると進めることができます。"
-                v-slot:default="slotProps"
-                @end-message="isFirstMessageEnd = true"
-              >
-                <p class="text-center">
-                  {{ slotProps.message }}
-                </p>
-              </AnimatedText>
-              <button class="btn" :class="{ clickable: isFirstMessageEnd}">ゲームを開始する</button>
+              <p class="text-center">
+                画像やテキストをクリックすると進めることができます。
+              </p>
+              <button class="btn clickable">ゲームを開始する</button>
             </template>
+
             <template v-slot:p2>
               <h1 class="main-title clickable">
                 <img
@@ -33,6 +26,7 @@
                 />
               </h1>
             </template>
+
             <template v-slot:p3>
               <AnimatedText
                 :interval="this.$store.state.textSpeed"

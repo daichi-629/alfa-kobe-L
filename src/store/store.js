@@ -59,7 +59,7 @@ const store = createStore({
     nextStage(state, payload) {
       // state.clear[payload.stage] = false;
       // state.next[payload.stage] = true;
-      console.log(payload);
+      payload;
       state.currentStage++;
     },
     gameStart(state) {
