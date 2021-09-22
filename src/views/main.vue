@@ -70,16 +70,16 @@ export default {
   watch: {
     getIsGameClear(newParam) {
       if (newParam) {
-        this.$router.push("/final");
+        this.$router.push({ name: "final" });
       }
     },
   },
   mounted() {
     if (!this.isGameStart) {
-      this.$router.push("/");
+      this.$router.push({ name: "index" });
     }
     if (this.getIsGameClear) {
-      this.$router.push("/final");
+      this.$router.push({ name: "final" });
     }
   },
   methods: {

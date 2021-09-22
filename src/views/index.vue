@@ -136,7 +136,7 @@
                 <div class="container">
                   <router-link
                     class="btn"
-                    to="/main"
+                    :to="{ name: 'main' }"
                     @click="this.$store.commit('gameStart')"
                     >準備OK？では、ゲームスタート！！！
                     <svg class="btn__arrow">
@@ -171,7 +171,7 @@
       title-style="text-align: center"
       button-style="margin:10px"
       v-on:yes="reset"
-      v-on:no="this.$router.push('/main')"
+      v-on:no="this.$router.push({ name: 'main' })"
     >
     </yes-no-dialog>
   </teleport>
@@ -181,7 +181,7 @@
 // @ is an alias to /src
 
 import AnimatedText from "../components/AnimatedText";
-import Page from "@/components/Page";
+import Page from "../components/Page";
 import yesNoDialog from "../components/yesNoDialog";
 import { mapGetters } from "vuex";
 

@@ -73,13 +73,13 @@ export default {
   },
   mounted() {
     if (!this.getIsGameClear) {
-      this.$router.push("/");
+      this.$router.push({ name: "index" });
     }
   },
   methods: {
     gotoTop() {
       this.$store.commit("resetState");
-      this.$router.push("/");
+      this.$router.push({ name: "index" });
     },
   },
 };
