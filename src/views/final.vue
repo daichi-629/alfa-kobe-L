@@ -5,8 +5,7 @@
         <div class="box bg-color--subcolor">
           <h2 class="section-title--border">全ステージ クリア！</h2>
           <p class="text-center">
-            おめでとう！あなたはついに全ての謎を解き、先生を救うことができた！<br />
-            そして先生からあるメッセージが伝えられた・・・
+            おめでとう！あなたはついに全ての謎を解き、遊園地から脱出することができた
           </p>
         </div>
       </div>

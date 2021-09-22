@@ -15,10 +15,9 @@
               <p class="text-center">
                 画像やテキストをクリックすると進めることができます。
               </p>
-              <button class="btn clickable">
-                ゲームを開始する
-              </button>
+              <button class="btn clickable">ゲームを開始する</button>
             </template>
+
             <template v-slot:p2>
               <h1 class="main-title clickable">
                 <img
@@ -27,6 +26,7 @@
                 />
               </h1>
             </template>
+
             <template v-slot:p3>
               <AnimatedText
                 :interval="this.$store.state.textSpeed"

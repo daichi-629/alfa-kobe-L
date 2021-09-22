@@ -23,7 +23,10 @@
           <template v-slot:p2>
             <transition appear name="appear-quiz">
               <figure class="image__container">
-                <img src="../../assets/images/stage3/stage3Question.png" alt="" />
+                <img
+                  src="../../assets/images/stage3/stage3Question.png"
+                  alt=""
+                />
               </figure>
             </transition>
           </template>

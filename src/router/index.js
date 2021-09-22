@@ -9,6 +9,10 @@ import testpage from "../views/stages/stage3MapQuiz";
 const routes = [
   {
     path: "/",
+    redirect: "/index",
+  },
+  {
+    path: "/index",
     name: "index",
     component: Index,
   },
@@ -34,7 +38,7 @@ const routes = [
 ];
 
 const router = createRouter({
-  history: createWebHashHistory(),
+  history: createWebHashHistory("/alfa-kobe-L/"),
   routes,
 });
 
